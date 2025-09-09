@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: bc1771267019a744f90720b293cbe8c6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - actionPanel: {instanceID: 0}
+  - botonMiniatura: {instanceID: 0}
+  - botonCerrarMiniatura: {instanceID: 0}
+  - panelMiniatura: {instanceID: 0}
+  - miniaturaUI: {instanceID: 0}
+  - spritePorDefecto: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
