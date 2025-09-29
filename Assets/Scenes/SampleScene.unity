@@ -5419,7 +5419,36 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1819b47813026464288178dc1863044c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1701832718}
+    - targetCorrespondingSourceObject: {fileID: -8367913216610365342, guid: 1819b47813026464288178dc1863044c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 659119588}
   m_SourcePrefab: {fileID: 100100000, guid: 1819b47813026464288178dc1863044c, type: 3}
+--- !u!1 &659119587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8367913216610365342, guid: 1819b47813026464288178dc1863044c, type: 3}
+  m_PrefabInstance: {fileID: 659119586}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &659119588
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659119587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.123971276, y: 2.006704, z: 22.000473}
+  m_Center: {x: -0.0017777942, y: 0.133986, z: -0.01872015}
 --- !u!1001 &692397217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11905,8 +11934,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.0074105607
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.0076277307
+  m_Center: {x: 0, y: 0, z: 0.00021716914}
 --- !u!1 &1510653519
 GameObject:
   m_ObjectHideFlags: 0
@@ -13184,8 +13213,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 65.81724, y: 1.092967, z: 35.050293}
-  m_Center: {x: 2.5606499, y: 0.2, z: -1.5135307}
+  m_Size: {x: 60.782185, y: 1.092967, z: 32.71743}
+  m_Center: {x: 0.14899254, y: 0.19999999, z: -0.3470993}
 --- !u!1 &1702963519
 GameObject:
   m_ObjectHideFlags: 0
@@ -16237,7 +16266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666611877484744202, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Name
-      value: Blaster
+      value: Raqueta
       objectReference: {fileID: 0}
     - target: {fileID: 8709757958066671998, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17569,7 +17598,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1937504400232198620, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_Name
-      value: Torus Interactable
+      value: Pelota
       objectReference: {fileID: 0}
     - target: {fileID: 1937504400232198620, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_IsActive
@@ -18665,6 +18694,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1032808785883741823, guid: 72138a47ec7b8714c91aa39dcdf3b714, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00061
+      objectReference: {fileID: 0}
     - target: {fileID: 4803614339566677342, guid: 72138a47ec7b8714c91aa39dcdf3b714, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18675,11 +18708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4803614339566677342, guid: 72138a47ec7b8714c91aa39dcdf3b714, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3958
+      value: 0.626
       objectReference: {fileID: 0}
     - target: {fileID: 4803614339566677342, guid: 72138a47ec7b8714c91aa39dcdf3b714, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.98
+      value: 2.044
       objectReference: {fileID: 0}
     - target: {fileID: 4803614339566677342, guid: 72138a47ec7b8714c91aa39dcdf3b714, type: 3}
       propertyPath: m_LocalRotation.w
