@@ -3,7 +3,11 @@ guid: a93f3a5b1beb18c4e9c6fe08d4cf6fe4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pelotaPrefab: {fileID: 919132149155446097, guid: 3fc9f1892e20c9c41826e2e8b43e9e03, type: 3}
+  - puntoDisparo: {instanceID: 0}
+  - zonaIzquierda: {instanceID: 0}
+  - zonaDerecha: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
