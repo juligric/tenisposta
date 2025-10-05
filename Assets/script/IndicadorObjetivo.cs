@@ -19,11 +19,11 @@ public class IndicadorObjetivo : MonoBehaviour
 
     private void Start()
     {
-        rend = GetComponent<Renderer>();
+        rend = GetComponentInChildren<Renderer>();
         // Usamos instancia del material para modificar solo este objeto
         matInstancia = rend.material;
         escalaOriginal = transform.localScale;
-
+            
         Apagar();
     }
 
