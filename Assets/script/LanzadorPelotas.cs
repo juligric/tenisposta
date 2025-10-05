@@ -5,7 +5,7 @@ public class LanzadorPelotas : MonoBehaviour
     [Header("Pelota")]
     public GameObject pelotaPrefab;
     public Transform puntoDisparo;
-    public float fuerzaDisparo = 20f;
+    public float fuerzaDisparo = 100f;
     public float intervalo = 3f;
     public float variacionAngulo = 20f;
 
@@ -31,12 +31,16 @@ public class LanzadorPelotas : MonoBehaviour
 
         if (rb != null)
         {
-            Vector3 dirBase = puntoDisparo.forward;
+            // Dirección base con un poco de elevación hacia arriba
+            Vector3 dirBase = (puntoDisparo.forward + puntoDisparo.up * 0.5f).normalized;
+
+            // Mantiene la variación angular aleatoria
             Vector3 dirAleatoria = Quaternion.Euler(
                 Random.Range(-variacionAngulo, variacionAngulo),
                 Random.Range(-variacionAngulo, variacionAngulo),
                 0f
             ) * dirBase;
+
 
             rb.AddForce(dirAleatoria.normalized * fuerzaDisparo, ForceMode.Impulse);
         }

@@ -5081,13 +5081,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649013504}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.09257707, y: 0.70102036, z: -0.092577085, w: 0.70102036}
   m_LocalPosition: {x: -0.5890007, y: 0.48600006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1856079287}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15.046, y: 90, z: 0}
 --- !u!114 &649013506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5101,8 +5101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pelotaPrefab: {fileID: 2046375308103600156}
-  puntoDisparo: {fileID: 1856079287}
-  fuerzaDisparo: 100
+  puntoDisparo: {fileID: 649013505}
+  fuerzaDisparo: 300
   intervalo: 3
   variacionAngulo: 60
   zonaIzquierda: {fileID: 0}
@@ -13983,7 +13983,7 @@ Transform:
   m_GameObject: {fileID: 1856079283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.049, y: 4.2, z: 1.28}
+  m_LocalPosition: {x: 21.38, y: 4.2, z: 1.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
