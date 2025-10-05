@@ -32,7 +32,7 @@ public class LanzadorPelotas : MonoBehaviour
         if (rb != null)
         {
             // Dirección base con un poco de elevación hacia arriba
-            Vector3 dirBase = (puntoDisparo.forward + puntoDisparo.up * 0.5f).normalized;
+            Vector3 dirBase = (puntoDisparo.forward + puntoDisparo.up * 1f).normalized;
 
             // Mantiene la variación angular aleatoria
             Vector3 dirAleatoria = Quaternion.Euler(
