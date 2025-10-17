@@ -5,7 +5,7 @@ public class LanzadorPelotas : MonoBehaviour
     [Header("Pelota")]
     public GameObject pelotaPrefab;
     public Transform puntoDisparo;
-    public float fuerzaDisparo = 100f;
+    public float fuerzaDisparo = 300f;
     public float intervalo = 3f;
     public float variacionAngulo = 20f;
 
