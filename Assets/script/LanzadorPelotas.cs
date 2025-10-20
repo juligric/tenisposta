@@ -2,76 +2,58 @@
 
 public class LanzadorPelotas : MonoBehaviour
 {
-    [Header("Pelota")]
-    public GameObject pelotaPrefab;
-    public Transform puntoDisparo;
-    public float fuerzaDisparo = 300f;
-    public float intervalo = 3f;
-    public float variacionAngulo = 20f;
+    // ... tu código igual ...
 
-    [Header("Indicadores de media cancha")]
-    public IndicadorObjetivo zonaIzquierda;
-    public IndicadorObjetivo zonaDerecha;
-    public float retrasoIluminado = 1f;
-    public float tiempoIluminado = 2f;
-    public bool alternarLados = true;
+    [Header("Sistema de puntaje")]
+    public TennisScoreManager scoreManager; // arrastrá el ScoreManager desde el inspector
 
-    private bool proximaIzquierda = true;
+    private string ladoActivo = ""; // "Izquierda" o "Derecha"
 
-    private void Start()
-    {
-        InvokeRepeating(nameof(DispararPelota), 0f, intervalo);
-    }
-
-    void DispararPelota()
-    {
-        // Crear y lanzar pelota
-        GameObject pelota = Instantiate(pelotaPrefab, puntoDisparo.position, puntoDisparo.rotation);
-        Rigidbody rb = pelota.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            // Dirección base con un poco de elevación hacia arriba
-            Vector3 dirBase = (puntoDisparo.forward + puntoDisparo.up * 2f).normalized;
-
-            // Mantiene la variación angular aleatoria
-            Vector3 dirAleatoria = Quaternion.Euler(
-                Random.Range(-variacionAngulo, variacionAngulo),
-                Random.Range(-variacionAngulo, variacionAngulo),
-                0f
-            ) * dirBase;
-
-
-            rb.AddForce(dirAleatoria.normalized * fuerzaDisparo, ForceMode.Impulse);
-        }
-
-        Destroy(pelota, 10f);
-
-        // Iluminar mitad correcta tras un retraso
-        Invoke(nameof(IluminarMitadObjetivo), retrasoIluminado);
-    }
+    // ... tu código igual ...
 
     void IluminarMitadObjetivo()
     {
-        // Apagar ambos antes de iluminar uno
-        zonaIzquierda?.Apagar();
-        zonaDerecha?.Apagar();
+        if (zonaIzquierda != null)
+            zonaIzquierda.Apagar();
+
+        if (zonaDerecha != null)
+            zonaDerecha.Apagar();
 
         if (alternarLados)
         {
             if (proximaIzquierda)
-                zonaIzquierda?.Iluminar(tiempoIluminado);
+            {
+                if (zonaIzquierda != null)
+                    zonaIzquierda.Iluminar(tiempoIluminado);
+                ladoActivo = "Izquierda";
+            }
             else
-                zonaDerecha?.Iluminar(tiempoIluminado);
+            {
+                if (zonaDerecha != null)
+                    zonaDerecha.Iluminar(tiempoIluminado);
+                ladoActivo = "Derecha";
+            }
 
             proximaIzquierda = !proximaIzquierda;
         }
         else
         {
             if (Random.value > 0.5f)
-                zonaIzquierda?.Iluminar(tiempoIluminado);
+            {
+                if (zonaIzquierda != null)
+                    zonaIzquierda.Iluminar(tiempoIluminado);
+                ladoActivo = "Izquierda";
+            }
             else
-                zonaDerecha?.Iluminar(tiempoIluminado);
+            {
+                if (zonaDerecha != null)
+                    zonaDerecha.Iluminar(tiempoIluminado);
+                ladoActivo = "Derecha";
+            }
         }
+
+        // Le avisamos al sistema de zonas cuál está activa
+        ActiveZoneManager.Instance.SetActiveZone(ladoActivo);
     }
+
 }
