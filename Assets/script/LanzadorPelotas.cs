@@ -56,6 +56,12 @@ public class LanzadorPelotas : MonoBehaviour
 
     void IluminarMitadObjetivo()
     {
+        Debug.Log("🧠 LanzadorPelotas: IluminarMitadObjetivo ejecutado. ActiveZoneManager = " + ActiveZoneManager.Instance);
+
+        if (ZonaIzquierda == null) Debug.LogError("❌ ZonaIzquierda no asignada");
+        if (ZonaDerecha == null) Debug.LogError("❌ ZonaDerecha no asignada");
+        if (ActiveZoneManager.Instance == null) Debug.LogError("❌ ActiveZoneManager.Instance es null");
+
         if (ZonaIzquierda != null) ZonaIzquierda.Apagar();
         if (ZonaDerecha != null) ZonaDerecha.Apagar();
 
