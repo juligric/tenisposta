@@ -1,22 +1,45 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class BallScoring : MonoBehaviour
 {
+    public int puntosPorZona = 1;
     public TennisScoreManager scoreManager;
 
+    private void Start()
+    {
+        if (scoreManager == null)
+            Debug.LogError("BallScoring: scoreManager no asignado en Inspector.");
+    }
+
+    // 🔹 Solo usamos colisiones normales
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        Debug.Log($"OnCollisionEnter detectado con {collision.collider.name}");
+
+        Collider zonaActiva = ActiveZoneManager.Instance != null ? ActiveZoneManager.Instance.GetActiveCollider() : null;
+
+        if (zonaActiva == null)
         {
-            if (ActiveZoneManager.Instance != null && ActiveZoneManager.Instance.EstaEnZonaActiva(transform.position))
+            Debug.Log("No hay zona activa definida en ActiveZoneManager.");
+            return;
+        }
+
+        if (collision.collider == zonaActiva)
+        {
+            if (scoreManager != null)
             {
-                scoreManager.SumarPuntos(10);
-                Debug.Log("✅ +10 puntos");
+                scoreManager.SumarPuntos(puntosPorZona);
+                Debug.Log("¡Sumó puntos! Zona activa golpeada.");
             }
             else
             {
-                Debug.Log("❌ No sumó puntos");
+                Debug.LogError("ScoreManager es null en BallScoring.");
             }
+        }
+        else
+        {
+            Debug.Log($"Colisionó con {collision.collider.name}, pero la zona activa es {zonaActiva.name} -> No suma.");
         }
     }
 }

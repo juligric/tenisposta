@@ -94,6 +94,9 @@ public class LanzadorPelotas : MonoBehaviour
             }
         }
 
-        ActiveZoneManager.Instance.SetActiveZone(ladoActivo);
+        ActiveZoneManager.Instance.SetActiveZone("Izquierda");
+        ActiveZoneManager.Instance.SetActiveZone("Derecha");
+
+
     }
 }
