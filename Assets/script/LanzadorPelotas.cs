@@ -15,15 +15,13 @@ public class LanzadorPelotas : MonoBehaviour
     public float fuerzaLanzamiento = 300f;
     public float intervaloLanzamiento = 3f;
 
-    [Header("Configuración del lanzamiento")]
+    [Header("Configuración")]
     public bool alternarLados = true;
     private bool proximaIzquierda = true;
     public float tiempoIluminado = 2f;
 
     [Range(0f, 1f)] public float anguloElevacion = 0.3f;
     [Range(0f, 1f)] public float desviacionMaxX = 0.5f;
-
-    private string ladoActivo = ""; // "Izquierda" o "Derecha"
 
     void Start()
     {
@@ -34,12 +32,16 @@ public class LanzadorPelotas : MonoBehaviour
     {
         if (prefabPelota == null || puntoLanzamiento == null)
         {
-            Debug.LogWarning("Falta asignar prefabPelota o puntoLanzamiento en el inspector.");
+            Debug.LogWarning("⚠️ Falta asignar prefabPelota o puntoLanzamiento");
             return;
         }
 
         GameObject pelota = Instantiate(prefabPelota, puntoLanzamiento.position, puntoLanzamiento.rotation);
         Rigidbody rb = pelota.GetComponent<Rigidbody>();
+
+        // Asignamos el score manager a la pelota
+        Score scoring = pelota.GetComponent<Score>();
+        if (scoring != null) scoring.scoreManager = scoreManager;
 
         if (rb != null)
         {
@@ -51,52 +53,34 @@ public class LanzadorPelotas : MonoBehaviour
             rb.AddForce(direccion * fuerzaLanzamiento, ForceMode.VelocityChange);
         }
 
-        IluminarMitadObjetivo();
+        ActivarZona();
     }
 
-    void IluminarMitadObjetivo()
+    void ActivarZona()
     {
-        Debug.Log("🧠 LanzadorPelotas: IluminarMitadObjetivo ejecutado. ActiveZoneManager = " + ActiveZoneManager.Instance);
+        // Apagamos ambas
+        ZonaIzquierda.Apagar();
+        ZonaDerecha.Apagar();
 
-        if (ZonaIzquierda == null) Debug.LogError("❌ ZonaIzquierda no asignada");
-        if (ZonaDerecha == null) Debug.LogError("❌ ZonaDerecha no asignada");
-        if (ActiveZoneManager.Instance == null) Debug.LogError("❌ ActiveZoneManager.Instance es null");
-
-        if (ZonaIzquierda != null) ZonaIzquierda.Apagar();
-        if (ZonaDerecha != null) ZonaDerecha.Apagar();
+        Collider zonaActiva;
 
         if (alternarLados)
         {
-            if (proximaIzquierda)
-            {
-                ZonaIzquierda?.Iluminar(tiempoIluminado);
-                ladoActivo = "Izquierda";
-            }
-            else
-            {
-                ZonaDerecha?.Iluminar(tiempoIluminado);
-                ladoActivo = "Derecha";
-            }
-
             proximaIzquierda = !proximaIzquierda;
+            zonaActiva = proximaIzquierda ? ZonaIzquierda.GetComponent<Collider>() : ZonaDerecha.GetComponent<Collider>();
         }
         else
         {
-            if (Random.value > 0.5f)
-            {
-                ZonaIzquierda?.Iluminar(tiempoIluminado);
-                ladoActivo = "Izquierda";
-            }
-            else
-            {
-                ZonaDerecha?.Iluminar(tiempoIluminado);
-                ladoActivo = "Derecha";
-            }
+            zonaActiva = (Random.value > 0.5f ? ZonaIzquierda : ZonaDerecha).GetComponent<Collider>();
         }
 
-        ActiveZoneManager.Instance.SetActiveZone("Izquierda");
-        ActiveZoneManager.Instance.SetActiveZone("Derecha");
+        // Iluminar
+        if (zonaActiva == ZonaIzquierda.GetComponent<Collider>())
+            ZonaIzquierda.Iluminar(tiempoIluminado);
+        else
+            ZonaDerecha.Iluminar(tiempoIluminado);
 
-
+        // Registrar la zona activa globalmente
+        ZonaActiva.Instance.SetActiveZone(zonaActiva);
     }
 }

@@ -15,7 +15,7 @@ public class IndicadorObjetivo : MonoBehaviour
     private void Start()
     {
         rend = GetComponentInChildren<Renderer>();
-        matInstancia = rend.material; // instancia del material
+        matInstancia = rend.material;
         Apagar();
     }
 

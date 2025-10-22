@@ -6,7 +6,7 @@ public class TennisScoreManager : MonoBehaviour
     public int puntaje = 0;
     public TMP_Text textoPuntaje;
 
-    private void Start()
+    void Start()
     {
         ActualizarTexto();
     }
@@ -15,7 +15,7 @@ public class TennisScoreManager : MonoBehaviour
     {
         puntaje += puntos;
         ActualizarTexto();
-        Debug.Log($"Puntos sumados: {puntos} | Total: {puntaje}");
+        Debug.Log($"✅ +{puntos} puntos (Total: {puntaje})");
     }
 
     void ActualizarTexto()

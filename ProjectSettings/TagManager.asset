@@ -7,6 +7,7 @@ TagManager:
   - Anchor
   - Ground
   - Pelota
+  - Racket
   layers:
   - Default
   - TransparentFX
