@@ -4482,7 +4482,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 570239033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35aedd767742dcf418db91bc0c889b10, type: 3}
+  m_Script: {fileID: 11500000, guid: bae32688abf10e647a08cb24b91c2c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &570239035
@@ -4939,10 +4939,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 638773808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5856cc4b4ea3baa4eabc137448a25a56, type: 3}
+  m_Script: {fileID: 11500000, guid: d5f7ee6599852084f9208c559a5c9140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntaje: 0
   textoPuntaje: {fileID: 1445449363}
 --- !u!4 &638773810
 Transform:
@@ -16908,6 +16907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZonaIzquierda
       objectReference: {fileID: 0}
+    - target: {fileID: 8668651351127252233, guid: e0b52c74a811ae946bc7a834108a1aff, type: 3}
+      propertyPath: m_TagString
+      value: ZonaIluminada
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18528,6 +18531,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1937504400232198620, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2046375308103600157}
+    - targetCorrespondingSourceObject: {fileID: 1937504400232198620, guid: 3d032f5481d2826478451895128a76f4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2046375308103600158}
     - targetCorrespondingSourceObject: {fileID: 6537534795858075749, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1510297967}
@@ -18554,6 +18560,19 @@ MonoBehaviour:
   vanishDelay: 1.2
   vanishScaleTime: 0.5
   useGravity: 1
+--- !u!114 &2046375308103600158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046375308103600156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23745d4eb400f9b46b4df81a2d6b9e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 638773809}
 --- !u!1001 &3257631069116033653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19346,6 +19365,10 @@ PrefabInstance:
     - target: {fileID: 387988189105531986, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_Name
       value: 'ZonaDerecha '
+      objectReference: {fileID: 0}
+    - target: {fileID: 387988189105531986, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
+      propertyPath: m_TagString
+      value: ZonaIluminada
       objectReference: {fileID: 0}
     - target: {fileID: 1052165165361503951, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_LocalPosition.x

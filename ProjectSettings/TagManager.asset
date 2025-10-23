@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Pelota
   - Racket
+  - ZonaIluminada
   layers:
   - Default
   - TransparentFX
