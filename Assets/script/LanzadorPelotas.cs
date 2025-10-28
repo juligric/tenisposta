@@ -63,7 +63,6 @@ public class LanzadorPelotas : MonoBehaviour
 
     private void ActivarZona()
     {
-        // Apagar ambas zonas antes de activar la nueva
         ZonaIzquierda.Apagar();
         ZonaDerecha.Apagar();
 
@@ -87,7 +86,8 @@ public class LanzadorPelotas : MonoBehaviour
         else
             ZonaDerecha.Iluminar(tiempoIluminado);
 
-        // Registrar la zona activa globalmente
+        // Registrar globalmente
         ZonaActiva1.Instance.SetActiveZone(zonaActiva);
+        Debug.Log("Zona activa actual: " + zonaActiva.name);
     }
 }

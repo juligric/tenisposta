@@ -20,6 +20,8 @@ public class ScoreManager : MonoBehaviour
     private void ActualizarTexto()
     {
         if (textoPuntaje != null)
-            textoPuntaje.text = "Puntaje: " + puntos;
+            textoPuntaje.text = puntos.ToString();
     }
 }
+
+

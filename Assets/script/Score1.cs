@@ -1,23 +1,50 @@
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
 
 public class Score1 : MonoBehaviour
 {
-    public ScoreManager scoreManager; // Referencia al manejador global del puntaje
-
+    public ScoreManager scoreManager;
     private bool puntoSumado = false;
+    private bool puedeContar = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (puntoSumado) return;  // Evita sumar m�s de una vez
+        // Espera un breve tiempo antes de permitir sumar (para evitar colisión inicial con raqueta)
+        Invoke(nameof(HabilitarConteo), 0.5f);
+    }
 
-        if (other.CompareTag("ZonaIluminada"))
+    void HabilitarConteo()
+    {
+        puedeContar = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!puedeContar || puntoSumado) return;
+
+        // Ignorar colisiones con la raqueta
+        if (collision.collider.CompareTag("Racket"))
         {
-            if (ZonaActiva1.Instance.GetActiveZone() == other)
-            {
-                scoreManager.SumarPuntos(10);
-                puntoSumado = true;
-            }
+            Debug.Log("🎾 Pelota tocó la raqueta (sin puntuar)");
+            return;
+        }
+
+        // Obtener la zona activa
+        Collider zonaActiva = ZonaActiva1.Instance.GetActiveZone();
+
+        // Verificar si el collider pertenece a la zona activa
+        if (zonaActiva != null &&
+            (collision.collider == zonaActiva || collision.collider.transform.IsChildOf(zonaActiva.transform)))
+        {
+            puntoSumado = true;
+            scoreManager.SumarPuntos(10);
+            Debug.Log("✅ ¡Pelota en zona activa! +10 puntos");
+
+            // Destruir pelota después de breve delay
+            Destroy(gameObject, 0.5f);
+        }
+        else
+        {
+            Debug.Log("❌ Pelota fuera de la zona activa (chocó con " + collision.collider.name + ")");
         }
     }
 }
