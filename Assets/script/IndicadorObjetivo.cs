@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IndicadorObjetivo : MonoBehaviour
 {
@@ -6,7 +6,7 @@ public class IndicadorObjetivo : MonoBehaviour
     public Color colorNormal = Color.gray;
     public Color colorIluminado = Color.green;
 
-    [Header("Part�culas (opcional)")]
+    [Header("Partículas (opcional)")]
     public ParticleSystem particulas;
 
     private Renderer rend;

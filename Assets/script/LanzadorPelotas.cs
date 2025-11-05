@@ -14,12 +14,12 @@ public class LanzadorPelotas : MonoBehaviour
     public GameObject prefabPelota;
     public Transform puntoLanzamiento;
     public float fuerzaLanzamiento = 300f;
-    public float intervaloLanzamiento = 3f;
+    public float intervaloLanzamiento = 1f;
 
     [Header("Configuración")]
     public bool alternarLados = true;
     private bool proximaIzquierda = true;
-    public float tiempoIluminado = 2f;
+    public float tiempoIluminado = 5f;
 
     [Range(0f, 1f)] public float anguloElevacion = 0.3f;
     [Range(0f, 1f)] public float desviacionMaxX = 0.5f;
@@ -77,7 +77,7 @@ public class LanzadorPelotas : MonoBehaviour
         }
         else
         {
-            zonaActiva = (Random.value > 0.5f ? ZonaIzquierda : ZonaDerecha).GetComponent<Collider>();
+            zonaActiva = (Random.value > 1f ? ZonaIzquierda : ZonaDerecha).GetComponent<Collider>();
         }
 
         // Iluminar la zona activa
