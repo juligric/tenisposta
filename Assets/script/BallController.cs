@@ -4,9 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
-    public float reflectSpeedMultiplier = 1.5f; // cu�nto aumenta la velocidad al pegarle
+    public float reflectSpeedMultiplier = 0.0f; // cu�nto aumenta la velocidad al pegarle
     public string racketTag = "Racket";
-    public float vanishDelay = 1.2f; // tiempo despu�s del golpe para desaparecer
+    public float vanishDelay = 20f; // tiempo despu�s del golpe para desaparecer
     public float vanishScaleTime = 0.5f;
     public bool useGravity = true;
 
