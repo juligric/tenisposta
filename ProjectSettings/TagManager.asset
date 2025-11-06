@@ -9,6 +9,13 @@ TagManager:
   - Pelota
   - Racket
   - ZonaIluminada
+  - floor
+  - Zona1
+  - Zona2
+  - Zona3
+  - Zona4
+  - Zona5
+  - Zona6
   layers:
   - Default
   - TransparentFX

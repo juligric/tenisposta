@@ -4,14 +4,26 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
-    public float reflectSpeedMultiplier = 1.5f; // cu�nto aumenta la velocidad al pegarle
+    [Header("Configuración de Rebote")]
+    [Range(0f, 1f)] public float reduccionFuerza = 0.6f;
+    public float fuerzaExtraCaida = 2f;
+
+    [Header("Configuración General")]
     public string racketTag = "Racket";
-    public float vanishDelay = 1.2f; // tiempo despu�s del golpe para desaparecer
+    public float vanishDelay = 40f;
     public float vanishScaleTime = 0.5f;
     public bool useGravity = true;
 
-    Rigidbody rb;
-    bool wasHit = false;
+    [Header("Zonas")]
+    public GameObject Zona1;
+    public GameObject Zona2;
+    public GameObject Zona3;
+    public GameObject Zona4;
+    public GameObject Zona5;
+    public GameObject Zona6;
+
+    private Rigidbody rb;
+    private bool wasHit = false;
 
     void Awake()
     {
@@ -23,45 +35,71 @@ public class BallController : MonoBehaviour
     {
         if (wasHit) return;
 
-        // Si golpea la raqueta (cubo)
+        // 🔹 Rebote con el piso
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            float reboteFuerza = 12f;
+            if (rb.linearVelocity.y < 0)
+            {
+                Vector3 vel = rb.linearVelocity;
+                vel.y = reboteFuerza;
+                rb.linearVelocity = vel;
+            }
+            return;
+        }
+
+        // 🔹 Golpe de raqueta
         if (collision.gameObject.CompareTag(racketTag))
         {
-            // Para calcular el reflejo m�s preciso tomamos el primer contacto
             ContactPoint contact = collision.contacts[0];
             Vector3 inVel = rb.linearVelocity;
 
-            // Si la pelota ven�a lenta, podemos usar la velocidad relativa del objeto que la golpea
-            Vector3 racketVel = Vector3.zero;
-            Rigidbody racketRb = collision.rigidbody;
-            if (racketRb != null) racketVel = racketRb.linearVelocity;
+            float angle = Vector3.Angle(inVel.normalized, contact.normal);
+            string colliderName = collision.collider.gameObject.name;
 
-            // reflectamos la velocidad contra la normal de contacto
-            Vector3 reflected = Vector3.Reflect(inVel, contact.normal);
+            GameObject targetZone = null;
 
-            // si la velocidad era casi cero (spawn cerca), usa la direcci�n opuesta a la normal
-            if (reflected.sqrMagnitude < 0.01f)
-                reflected = contact.normal * -1f;
+            // -----------------------------------------------
+            // 🔸 CENTRO
+            if (colliderName == "collider center")
+            {
+                targetZone = angle > 90f ? Zona1 : Zona2;
+            }
+            // 🔸 MEDIOS
+            else if (colliderName == "collider medio abajo")
+            {
+                targetZone = angle > 45f ? Zona3 : Zona4;
+            }
+            else if (colliderName == "Collider_InnerR")
+            {
+                targetZone = angle > 45f ? Zona4 : Zona3;
+            }
+            // 🔸 EXTERIORES
+            else if (colliderName == "Collider_OuterL")
+            {
+                targetZone = angle > 45f ? Zona5 : Zona6;
+            }
+            else if (colliderName == "Collider_OuterR")
+            {
+                targetZone = angle > 45f ? Zona6 : Zona5;
+            }
 
-            // combinamos con la velocidad de la raqueta (opcional) para sentido m�s realista
-            Vector3 finalVel = (reflected.normalized * inVel.magnitude * reflectSpeedMultiplier) + racketVel * 0.6f;
-
-            rb.linearVelocity = finalVel;
+            // 🔹 Redirigir pelota
+            if (targetZone != null)
+            {
+                Vector3 dir = (targetZone.transform.position - transform.position).normalized;
+                float fuerzaGolpe = inVel.magnitude * 1.2f + 5f;
+                rb.linearVelocity = dir * fuerzaGolpe;
+            }
 
             wasHit = true;
             StartCoroutine(VanishAfterDelay(vanishDelay));
-            // opcional: reproducir sonido o part�culas ac�
-        }
-        else
-        {
-            // Si choca con cualquier otra cosa (suelo, paredes) pod�s dejar la f�sica normal
         }
     }
 
     IEnumerator VanishAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        // animaci�n de escala para "desaparecer"
         Vector3 startScale = transform.localScale;
         float t = 0f;
         while (t < vanishScaleTime)
