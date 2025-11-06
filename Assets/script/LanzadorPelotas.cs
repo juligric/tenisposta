@@ -77,7 +77,7 @@ public class LanzadorPelotas : MonoBehaviour
         }
         else
         {
-            zonaActiva = (Random.value > 1f ? ZonaIzquierda : ZonaDerecha).GetComponent<Collider>();
+            zonaActiva = (Random.value > 5f ? ZonaIzquierda : ZonaDerecha).GetComponent<Collider>();
         }
 
         // Iluminar la zona activa

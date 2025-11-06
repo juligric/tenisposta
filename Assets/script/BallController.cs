@@ -5,14 +5,22 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     [Header("Configuración de Rebote")]
-    [Range(0f, 1f)] public float reduccionFuerza = 0.6f; // 🔹 cuanto menor, más suave el rebote
-    public float fuerzaExtraCaida = 2f; // 🔹 empuje hacia abajo tras el golpe
+    [Range(0f, 1f)] public float reduccionFuerza = 0.6f;
+    public float fuerzaExtraCaida = 2f;
 
     [Header("Configuración General")]
     public string racketTag = "Racket";
     public float vanishDelay = 40f;
     public float vanishScaleTime = 0.5f;
     public bool useGravity = true;
+
+    [Header("Zonas")]
+    public GameObject Zona1;
+    public GameObject Zona2;
+    public GameObject Zona3;
+    public GameObject Zona4;
+    public GameObject Zona5;
+    public GameObject Zona6;
 
     private Rigidbody rb;
     private bool wasHit = false;
@@ -27,30 +35,62 @@ public class BallController : MonoBehaviour
     {
         if (wasHit) return;
 
-        // Si golpea la raqueta
+        // 🔹 Rebote con el piso
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            float reboteFuerza = 12f;
+            if (rb.linearVelocity.y < 0)
+            {
+                Vector3 vel = rb.linearVelocity;
+                vel.y = reboteFuerza;
+                rb.linearVelocity = vel;
+            }
+            return;
+        }
+
+        // 🔹 Golpe de raqueta
         if (collision.gameObject.CompareTag(racketTag))
         {
             ContactPoint contact = collision.contacts[0];
             Vector3 inVel = rb.linearVelocity;
 
-            Vector3 racketVel = Vector3.zero;
-            Rigidbody racketRb = collision.rigidbody;
-            if (racketRb != null) racketVel = racketRb.linearVelocity;
+            float angle = Vector3.Angle(inVel.normalized, contact.normal);
+            string colliderName = collision.collider.gameObject.name;
 
-            // Refleja la dirección de la pelota
-            Vector3 reflected = Vector3.Reflect(inVel, contact.normal);
+            GameObject targetZone = null;
 
-            if (reflected.sqrMagnitude < 0.01f)
-                reflected = contact.normal * -1f;
+            // -----------------------------------------------
+            // 🔸 CENTRO
+            if (colliderName == "collider center")
+            {
+                targetZone = angle > 90f ? Zona1 : Zona2;
+            }
+            // 🔸 MEDIOS
+            else if (colliderName == "collider medio abajo")
+            {
+                targetZone = angle > 45f ? Zona3 : Zona4;
+            }
+            else if (colliderName == "Collider_InnerR")
+            {
+                targetZone = angle > 45f ? Zona4 : Zona3;
+            }
+            // 🔸 EXTERIORES
+            else if (colliderName == "Collider_OuterL")
+            {
+                targetZone = angle > 45f ? Zona5 : Zona6;
+            }
+            else if (colliderName == "Collider_OuterR")
+            {
+                targetZone = angle > 45f ? Zona6 : Zona5;
+            }
 
-            // 🔹 En vez de multiplicar, reducimos la fuerza para que se desacelere
-            Vector3 finalVel = (reflected.normalized * inVel.magnitude * reduccionFuerza)
-                             + (racketVel * 0.3f); // menor influencia de la raqueta
-
-            rb.linearVelocity = finalVel;
-
-            // 🔹 Empuje extra hacia abajo para simular peso real
-            rb.AddForce(Vector3.down * fuerzaExtraCaida, ForceMode.Impulse);
+            // 🔹 Redirigir pelota
+            if (targetZone != null)
+            {
+                Vector3 dir = (targetZone.transform.position - transform.position).normalized;
+                float fuerzaGolpe = inVel.magnitude * 1.2f + 5f;
+                rb.linearVelocity = dir * fuerzaGolpe;
+            }
 
             wasHit = true;
             StartCoroutine(VanishAfterDelay(vanishDelay));
@@ -60,7 +100,6 @@ public class BallController : MonoBehaviour
     IEnumerator VanishAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-
         Vector3 startScale = transform.localScale;
         float t = 0f;
         while (t < vanishScaleTime)
