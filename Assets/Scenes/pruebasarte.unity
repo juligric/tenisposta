@@ -4814,12 +4814,12 @@ MonoBehaviour:
   vanishDelay: 7
   vanishScaleTime: 0.5
   useGravity: 1
-  Zona1: {fileID: 0}
-  Zona2: {fileID: 0}
-  Zona3: {fileID: 0}
-  Zona4: {fileID: 0}
-  Zona5: {fileID: 0}
-  Zona6: {fileID: 0}
+  Zona1: {fileID: 320655775}
+  Zona2: {fileID: 478392}
+  Zona3: {fileID: 1606847894}
+  Zona4: {fileID: 1963762001}
+  Zona5: {fileID: 530679090}
+  Zona6: {fileID: 767448082}
 --- !u!114 &2046375308103600158
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -70,16 +70,24 @@ public class BallController : MonoBehaviour
             {
                 targetZone = angle > 45f ? Zona3 : Zona4;
             }
-            else if (colliderName == "Collider_InnerR")
+            else if (colliderName == "collider medio arriba")
             {
                 targetZone = angle > 45f ? Zona4 : Zona3;
             }
+            else if (colliderName == "collider medio abajo")
+            {
+                targetZone = angle > 45f ? Zona1 : Zona2;
+            }
+            else if (colliderName == "collider medio arriba")
+            {
+                targetZone = angle > 45f ? Zona1 : Zona2;
+            }
             // 🔸 EXTERIORES
-            else if (colliderName == "Collider_OuterL")
+            else if (colliderName == "collider lejos abajo")
             {
                 targetZone = angle > 45f ? Zona5 : Zona6;
             }
-            else if (colliderName == "Collider_OuterR")
+            else if (colliderName == "collider lejos arriba")
             {
                 targetZone = angle > 45f ? Zona6 : Zona5;
             }
