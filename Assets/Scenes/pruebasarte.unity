@@ -179,8 +179,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 33.20511, y: 0.690943, z: 39.390705}
-  m_Center: {x: -11.176933, y: -0.1545285, z: 0.7449369}
+  m_Size: {x: 33.20511, y: 2.0384994, z: 39.390705}
+  m_Center: {x: -11.176933, y: 0.5192497, z: 0.7449369}
 --- !u!1 &320655775
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,12 +551,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638773808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5f7ee6599852084f9208c559a5c9140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textoPuntaje: {fileID: 1445449363}
+  textoTiempo: {fileID: 0}
+  tiempoTotal: 5
 --- !u!4 &638773810
 Transform:
   m_ObjectHideFlags: 0
@@ -598,7 +600,7 @@ Transform:
   m_GameObject: {fileID: 649013504}
   serializedVersion: 2
   m_LocalRotation: {x: -0.12784454, y: 0.7156537, z: -0.045119353, w: -0.6851714}
-  m_LocalPosition: {x: 21.145897, y: 5, z: -1.7}
+  m_LocalPosition: {x: 21.145897, y: 4.638, z: -1.318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -621,11 +623,11 @@ MonoBehaviour:
   ZonaDerecha: {fileID: 2042772485}
   prefabPelota: {fileID: 2046375308103600156}
   puntoLanzamiento: {fileID: 649013505}
-  fuerzaLanzamiento: 40
+  fuerzaLanzamiento: 28
   intervaloLanzamiento: 3
   alternarLados: 1
   tiempoIluminado: 2
-  anguloElevacion: 0.666
+  anguloElevacion: 0.639
   desviacionMaxX: 0.064
 --- !u!1001 &658816395
 PrefabInstance:
@@ -1069,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052165165361503951, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9
+      value: 9.03
       objectReference: {fileID: 0}
     - target: {fileID: 1052165165361503951, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3629,7 +3631,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701832714}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -4701,7 +4703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3034804366926977499, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_Mass
-      value: 0.058
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3034804366926977499, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_CollisionDetection
@@ -4808,8 +4810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aa72802ba1982498b6c52b181dd37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduccionFuerza: 0.06
-  fuerzaExtraCaida: 1
+  reduccionFuerza: 0
+  fuerzaExtraCaida: 4
   racketTag: Racket
   vanishDelay: 7
   vanishScaleTime: 0.5
@@ -4859,7 +4861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052165165361503951, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1052165165361503951, guid: 9f647b905660f9d4883bff4ea978aee9, type: 3}
       propertyPath: m_LocalRotation.w

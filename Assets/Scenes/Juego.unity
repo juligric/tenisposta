@@ -4742,7 +4742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3034804366926977499, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_Mass
-      value: 0.058
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3034804366926977499, guid: 3d032f5481d2826478451895128a76f4, type: 3}
       propertyPath: m_CollisionDetection
@@ -4849,11 +4849,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aa72802ba1982498b6c52b181dd37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectSpeedMultiplier: 1.5
+  reduccionFuerza: 0.6
+  fuerzaExtraCaida: 2
   racketTag: Racket
   vanishDelay: 1.2
   vanishScaleTime: 0.5
   useGravity: 1
+  Zona1: {fileID: 0}
+  Zona2: {fileID: 0}
+  Zona3: {fileID: 0}
+  Zona4: {fileID: 0}
+  Zona5: {fileID: 0}
+  Zona6: {fileID: 0}
 --- !u!114 &2046375308103600158
 MonoBehaviour:
   m_ObjectHideFlags: 0

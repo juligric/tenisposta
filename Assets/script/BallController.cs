@@ -36,7 +36,7 @@ public class BallController : MonoBehaviour
         if (wasHit) return;
 
         // 🔹 Rebote con el piso
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("floor"))
         {
             float reboteFuerza = 12f;
             if (rb.linearVelocity.y < 0)
@@ -63,7 +63,7 @@ public class BallController : MonoBehaviour
             // 🔸 CENTRO
             if (colliderName == "collider center")
             {
-                targetZone = angle > 90f ? Zona1 : Zona2;
+                targetZone = angle > 45f ? Zona1 : Zona2;
             }
             // 🔸 MEDIOS
             else if (colliderName == "collider medio abajo")
