@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour
     [Header("Zonas")]
     public GameObject Zona1;
     public GameObject Zona2;
-    public GameObject Zona3;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    public GameObject Zona3;
     public GameObject Zona4;
     public GameObject Zona5;
     public GameObject Zona6;
@@ -38,13 +38,13 @@ public class BallController : MonoBehaviour
         // 🔹 Rebote con el piso
         if (collision.gameObject.CompareTag("floor"))
         {
-            float reboteFuerza = 12f;
             if (rb.linearVelocity.y < 0)
             {
                 Vector3 vel = rb.linearVelocity;
-                vel.y = reboteFuerza;
+                vel.y = 12f; // fuerza del rebote
                 rb.linearVelocity = vel;
             }
+            Debug.Log("💥 La pelota rebotó en el piso.");
             return;
         }
 
@@ -59,45 +59,44 @@ public class BallController : MonoBehaviour
 
             GameObject targetZone = null;
 
-            // -----------------------------------------------
+            Debug.Log($"🏓 Golpe detectado con: {colliderName} (ángulo {angle:F2}°)");
+
             // 🔸 CENTRO
             if (colliderName == "collider center")
-            {
                 targetZone = angle > 45f ? Zona1 : Zona2;
-            }
+
             // 🔸 MEDIOS
             else if (colliderName == "collider medio abajo")
-            {
                 targetZone = angle > 45f ? Zona3 : Zona4;
-            }
+
             else if (colliderName == "collider medio arriba")
-            {
                 targetZone = angle > 45f ? Zona4 : Zona3;
-            }
-            else if (colliderName == "collider medio abajo")
-            {
-                targetZone = angle > 45f ? Zona1 : Zona2;
-            }
-            else if (colliderName == "collider medio arriba")
-            {
-                targetZone = angle > 45f ? Zona1 : Zona2;
-            }
+
             // 🔸 EXTERIORES
             else if (colliderName == "collider lejos abajo")
-            {
                 targetZone = angle > 45f ? Zona5 : Zona6;
-            }
+
             else if (colliderName == "collider lejos arriba")
-            {
                 targetZone = angle > 45f ? Zona6 : Zona5;
-            }
 
             // 🔹 Redirigir pelota
             if (targetZone != null)
             {
                 Vector3 dir = (targetZone.transform.position - transform.position).normalized;
-                float fuerzaGolpe = inVel.magnitude * 1.2f + 5f;
+                float fuerzaGolpe = Mathf.Clamp(inVel.magnitude * 0.8f + 6f, 8f, 18f);
+
+                // 🟢 Línea visual para depuración (solo en modo editor)
+                Debug.DrawLine(transform.position, targetZone.transform.position, Color.green, 1.5f);
+
+                // 🔹 Aplicar dirección y fuerza
                 rb.linearVelocity = dir * fuerzaGolpe;
+                rb.AddForce(Vector3.down * fuerzaExtraCaida, ForceMode.VelocityChange);
+
+                Debug.Log($"🎯 Pelota dirigida hacia: {targetZone.name} con fuerza {fuerzaGolpe:F2}");
+            }
+            else
+            {
+                Debug.LogWarning($"⚠️ No se encontró una zona asignada para el collider '{colliderName}'.");
             }
 
             wasHit = true;
@@ -117,6 +116,7 @@ public class BallController : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, Vector3.zero, frac);
             yield return null;
         }
+        Debug.Log("🕳️ La pelota fue destruida después del retardo.");
         Destroy(gameObject);
     }
 }
