@@ -3056,7 +3056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.473
+      value: -25.1
       objectReference: {fileID: 0}
     - target: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4924,12 +4924,6 @@ MonoBehaviour:
   vanishDelay: 7
   vanishScaleTime: 0.5
   useGravity: 1
-  Zona1: {fileID: 320655775}
-  Zona2: {fileID: 478392}
-  Zona3: {fileID: 1606847894}
-  Zona4: {fileID: 1963762001}
-  Zona5: {fileID: 530679090}
-  Zona6: {fileID: 767448082}
 --- !u!114 &2046375308103600158
 MonoBehaviour:
   m_ObjectHideFlags: 0
