@@ -6,8 +6,8 @@ public class RaquetaVR : MonoBehaviour
     private Vector3 velocidad;
 
     [Header("Rebote Realista")]
-    public float fuerzaGolpe = 0.25f;   // controla la potencia del golpe
-    public float limiteVelocidad = 5f;  // evita disparos
+    public float fuerzaGolpe = 0;   // controla la potencia del golpe
+    public float limiteVelocidad = 3f;  // evita disparos
 
     void FixedUpdate()
     {
