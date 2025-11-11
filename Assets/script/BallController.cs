@@ -7,8 +7,6 @@ public class BallController : MonoBehaviour
     [Header("Configuración de Rebote")]
     [Range(0f, 1f)] public float reduccionFuerza = 1; // cuánto se reduce la velocidad al golpear
     public float fuerzaExtraCaida = 2f;
-    public PhysicsMaterial NuevaPelota;
-    public Collider col;
 
     [Header("Configuración General")]
     public string racketTag = "Racket";
@@ -23,7 +21,7 @@ public class BallController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = useGravity;
-        col = GetComponent<Collider>();
+
     }
 
     void OnCollisionEnter(Collision collision)
@@ -48,7 +46,7 @@ public class BallController : MonoBehaviour
         {
             Debug.Log($"🏓 Velocidad orginal al {rb.linearVelocity }");
             rb.linearVelocity *= reduccionFuerza; // reduce la velocidad actual
-            col.material = NuevaPelota;
+            
             rb.AddForce(Vector3.down * fuerzaExtraCaida, ForceMode.VelocityChange);
             Debug.Log($"🏓 Velocidad reducida al {rb.linearVelocity }% tras golpe de raqueta.");
            
