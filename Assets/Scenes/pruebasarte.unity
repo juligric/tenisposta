@@ -3056,7 +3056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.1
+      value: -24.52
       objectReference: {fileID: 0}
     - target: {fileID: 8806329115733545878, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3116,7 +3116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9059786329452581396, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_CameraYOffset
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9059786329452581396, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
@@ -4420,7 +4420,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1885077008463653879, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1885077008463653879, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Material
@@ -4432,7 +4432,7 @@ PrefabInstance:
       objectReference: {fileID: 13400000, guid: 5f30a847c032fb543a2b40aaee5b30ee, type: 2}
     - target: {fileID: 2153770277509494194, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2153770277509494194, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Material
@@ -4500,7 +4500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4786330053126909028, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786330053126909028, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Center.x
@@ -4524,27 +4524,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Size.x
-      value: 0.2434576
+      value: 0.20839657
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Size.y
-      value: 0.16745557
+      value: 1.3624884
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Size.z
       value: 0.9482582
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Center.x
-      value: 0.015153385
+      value: -0.0023772158
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Center.y
-      value: 0.2972208
+      value: 0.1741677
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Center.z
-      value: -0.0829642
+      value: -0.08296416
       objectReference: {fileID: 0}
     - target: {fileID: 5964546182172732451, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Material
@@ -4588,7 +4592,7 @@ PrefabInstance:
       objectReference: {fileID: 13400000, guid: 5f30a847c032fb543a2b40aaee5b30ee, type: 2}
     - target: {fileID: 8372581907632776859, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8372581907632776859, guid: ecbf6d1d3a7091b4bbdbc934b3c89fb9, type: 3}
       propertyPath: m_Material
@@ -4918,8 +4922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10aa72802ba1982498b6c52b181dd37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reduccionFuerza: 0.373
-  fuerzaExtraCaida: 4
+  reduccionFuerza: 0.671
+  fuerzaExtraCaida: 10
+  NuevaPelota: {fileID: 0}
+  col: {fileID: 0}
   racketTag: Racket
   vanishDelay: 7
   vanishScaleTime: 0.5
