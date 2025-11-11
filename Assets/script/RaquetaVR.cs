@@ -36,5 +36,7 @@ public class RaquetaVR : MonoBehaviour
 
         // Aplica impulso proporcional a la velocidad, pero controlado
         rb.AddForce(fuerza * fuerzaGolpe, ForceMode.Impulse);
+
+        Debug.Log("fuerzaGolpe");
     }
 }
