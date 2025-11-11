@@ -13,6 +13,8 @@ public class BallController : MonoBehaviour
     public float vanishDelay = 40f;
     public float vanishScaleTime = 0.5f;
     public bool useGravity = true;
+    public float Maxspeed = 10;
+    public float fuerzaRebote = 20;
 
     private Rigidbody rb;
     private bool wasHit = false;
@@ -34,7 +36,7 @@ public class BallController : MonoBehaviour
             if (rb.linearVelocity.y < 0)
             {
                 Vector3 vel = rb.linearVelocity;
-                vel.y = 12f;
+                vel.y = fuerzaRebote;
                 rb.linearVelocity = vel;
             }
             Debug.Log("💥 La pelota rebotó en el piso.");
@@ -70,6 +72,14 @@ public class BallController : MonoBehaviour
         }
         Debug.Log("🕳️ La pelota fue destruida después del retardo.");
         Destroy(gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        if(rb.linearVelocity.magnitude> Maxspeed && wasHit)
+        {
+            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, Maxspeed);
+        }
     }
 }
 
