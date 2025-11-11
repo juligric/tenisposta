@@ -5,6 +5,6 @@ public class Instrucciones : MonoBehaviour
 {
     public void IrAlJuego()
     {
-        SceneManager.LoadScene("Juego");
+        SceneManager.LoadScene("Pruebasarte");
     }
 }

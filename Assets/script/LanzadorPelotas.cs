@@ -54,7 +54,7 @@ public class LanzadorPelotas : MonoBehaviour
             float desviacionX = Random.Range(-desviacionMaxX, desviacionMaxX);
             Vector3 direccion = (puntoLanzamiento.forward + puntoLanzamiento.up * anguloElevacion + puntoLanzamiento.right * desviacionX).normalized;
 
-            rb.AddForce(direccion * fuerzaLanzamiento, ForceMode.VelocityChange);
+            rb.AddForce(direccion * fuerzaLanzamiento, ForceMode.Impulse);
         }
 
         // Activar e iluminar la zona correspondiente
