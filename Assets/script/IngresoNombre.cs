@@ -10,7 +10,7 @@ public class IngresoNombre : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(inputNombre.text))
         {
-            GameDataManager.Instance.currentPlayerName = inputNombre.text;
+            GetComponent<GameDataManager>().currentPlayerName = inputNombre.text;
             SceneManager.LoadScene("Instrucciones");
         }
     }

@@ -37,7 +37,7 @@ public class TimerVR : MonoBehaviour
             if (scoreManager != null)
                 scoreManager.TerminarJuego();
             else
-                SceneManager.LoadScene("Final"); // Por si no se encuentra el ScoreManager
+                SceneManager.LoadScene("final"); // Por si no se encuentra el ScoreManager
         }
 
         // Formato MM:SS
