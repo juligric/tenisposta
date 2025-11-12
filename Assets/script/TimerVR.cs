@@ -30,15 +30,15 @@ public class TimerVR : MonoBehaviour
         tiempoRestante -= Time.deltaTime;
         if (tiempoRestante < 0)
         {
-            tiempoRestante = 0;
+            Debug.Log("⏰ Tiempo terminado — cargando escena ultimo...");
             activo = false;
 
-            // ⏰ Cuando se acaba el tiempo → termina el juego
             if (scoreManager != null)
                 scoreManager.TerminarJuego();
             else
-                SceneManager.LoadScene("final"); // Por si no se encuentra el ScoreManager
+                SceneManager.LoadScene("ultimo");
         }
+
 
         // Formato MM:SS
         int minutos = Mathf.FloorToInt(tiempoRestante / 60);

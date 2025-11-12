@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +8,22 @@ public class IngresoNombre : MonoBehaviour
 
     public void GuardarNombreYContinuar()
     {
-        if (!string.IsNullOrEmpty(inputNombre.text))
+        string nombre = inputNombre.text.Trim();
+
+        if (!string.IsNullOrEmpty(nombre))
         {
-            GetComponent<GameDataManager>().currentPlayerName = inputNombre.text;
-            SceneManager.LoadScene("Instrucciones");
+            // Guarda el nombre del jugador en PlayerPrefs
+            PlayerPrefs.SetString("NombreJugador", nombre);
+            PlayerPrefs.Save();
+
+            Debug.Log("✅ Nombre guardado: " + nombre);
+
+            // Carga la siguiente escena (asegurate de usar el nombre correcto)
+            SceneManager.LoadScene("final");  // o la escena que siga después de ingresar el nombre
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ No ingresaste un nombre válido.");
         }
     }
 }

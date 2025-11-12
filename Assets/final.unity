@@ -708,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textoPuntaje: {fileID: 394091507}
   textoTiempo: {fileID: 394091506}
-  tiempoTotal: 90
+  tiempoTotal: 5
 --- !u!4 &638773810
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,6 +1336,10 @@ PrefabInstance:
       propertyPath: textoTimer
       value: 
       objectReference: {fileID: 394091506}
+    - target: {fileID: 3287559249403023966, guid: a640f9141a7a61d4f95fa6037035d33d, type: 3}
+      propertyPath: tiempoTotal
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8001139354598360336, guid: a640f9141a7a61d4f95fa6037035d33d, type: 3}
       propertyPath: m_Name
       value: TimeVR

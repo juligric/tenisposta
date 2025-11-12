@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IngresoNombre.unity
     guid: 74596a7b634f4c54abd944529c14995c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Instrucciones.unity
     guid: cb3a74f830241f146b92e449c331bc67
   - enabled: 1
     path: Assets/final.unity
     guid: 80c7be121bdac844499eeb9e02c40afd
   - enabled: 1
-    path: Assets/Scenes/Final.unity
+    path: Assets/Scenes/ultimo.unity
     guid: a4e85200e6ae5c94ba6a2c3101e6e20b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/pruebasarte.unity
     guid: e97ecf14db212b240a47e428cbc42ef7
   - enabled: 0

@@ -445,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textoPuntaje: {fileID: 1445449363}
   textoTiempo: {fileID: 391805908}
-  tiempoTotal: 90
+  tiempoTotal: 5
 --- !u!4 &638773810
 Transform:
   m_ObjectHideFlags: 0
@@ -4412,6 +4412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5903d38fa9e0341b1d0c8def75090f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuerzaGolpe: 0
+  limiteVelocidad: 3
 --- !u!1001 &828307019242873732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4464,6 +4466,10 @@ PrefabInstance:
       propertyPath: textoTimer
       value: 
       objectReference: {fileID: 391805908}
+    - target: {fileID: 3287559249403023966, guid: a640f9141a7a61d4f95fa6037035d33d, type: 3}
+      propertyPath: tiempoTotal
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3287559249403023966, guid: a640f9141a7a61d4f95fa6037035d33d, type: 3}
       propertyPath: cabezaJugador
       value: 
@@ -4855,12 +4861,8 @@ MonoBehaviour:
   vanishDelay: 1.2
   vanishScaleTime: 0.5
   useGravity: 1
-  Zona1: {fileID: 0}
-  Zona2: {fileID: 0}
-  Zona3: {fileID: 0}
-  Zona4: {fileID: 0}
-  Zona5: {fileID: 0}
-  Zona6: {fileID: 0}
+  Maxspeed: 10
+  fuerzaRebote: 20
 --- !u!114 &2046375308103600158
 MonoBehaviour:
   m_ObjectHideFlags: 0

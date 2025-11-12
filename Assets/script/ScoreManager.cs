@@ -61,7 +61,7 @@ public class ScoreManager : MonoBehaviour
         GuardarPuntaje();
 
         // Cambia a la escena final de resultados (ajustá el nombre)
-        SceneManager.LoadScene("Final");
+        SceneManager.LoadScene("ultimo");
     }
 
     private void GuardarPuntaje()
