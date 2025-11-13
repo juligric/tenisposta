@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class TimerVR : MonoBehaviour
 {
     [Header("Configuración")]
-    public float tiempoTotal = 5f; // Duración del juego
+    public float tiempoTotal = 150f; // Duración del juego
     private float tiempoRestante;
     private bool activo = true;
 
@@ -26,30 +26,26 @@ public class TimerVR : MonoBehaviour
     {
         if (!activo) return;
 
-        // Actualiza tiempo restante
+        // 🔽 Resta el tiempo en cada frame
         tiempoRestante -= Time.deltaTime;
-        if (tiempoRestante < 0)
-        {
-            Debug.Log("⏰ Tiempo terminado — cargando escena ultimo...");
-            activo = false;
 
-            if (scoreManager != null)
-                scoreManager.TerminarJuego();
-            else
-                SceneManager.LoadScene("ultimo");
+        // 🔁 Si llega a 0, reinicia el contador
+        if (tiempoRestante <= 0)
+        {
+            Debug.Log("⏰ Tiempo terminado — reiniciando temporizador...");
+            ReiniciarTiempo();
         }
 
+        // 🕒 Muestra el tiempo restante (solo segundos)
+        int segundos = Mathf.FloorToInt(tiempoRestante);
+        textoTimer.text = $"{segundos:00}";
+     
+       
+    }
 
-        // Formato MM:SS
-        int minutos = Mathf.FloorToInt(tiempoRestante / 60);
-        int segundos = Mathf.FloorToInt(tiempoRestante % 60);
-        textoTimer.text = $"{minutos:00}:{segundos:00}";
-
-        // 🔄 Hace que el Canvas siga la vista del jugador
-        if (cabezaJugador != null)
-        {
-            transform.position = cabezaJugador.position + cabezaJugador.forward * offset.z + Vector3.up * offset.y;
-            transform.rotation = Quaternion.LookRotation(transform.position - cabezaJugador.position);
-        }
+    private void ReiniciarTiempo()
+    {
+        tiempoRestante = tiempoTotal;
+        activo = true;
     }
 }

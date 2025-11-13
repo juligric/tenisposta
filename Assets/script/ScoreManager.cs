@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI textoTiempo;   // Texto que muestra el tiempo restante (añadilo al Canvas)
 
     [Header("Configuración de juego")]
-    public float tiempoTotal = 5f; // duración del juego
+    public float tiempoTotal = 150f; // duración del juego
     private float tiempoRestante;
     private bool juegoTerminado = false;
 

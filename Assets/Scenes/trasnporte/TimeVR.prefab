@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e3b5e775d11bd4b962baaabe3911a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoTotal: 90
+  tiempoTotal: 150
   textoTimer: {fileID: 0}
   cabezaJugador: {fileID: 0}
   offset: {x: -0.71, y: -0.3, z: 1.5}
