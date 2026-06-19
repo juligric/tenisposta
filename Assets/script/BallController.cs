@@ -1,84 +1,89 @@
 using System.Collections;
 using UnityEngine;
-
-[RequireComponent(typeof(Rigidbody))]
-public class BallController : MonoBehaviour
+namespace Jero
 {
-    [Header("Configuración de Rebote")]
-    [Range(0f, 1f)] public float reduccionFuerza = 1; // cuánto se reduce la velocidad al golpear
-    public float fuerzaExtraCaida = 2f;
 
-    [Header("Configuración General")]
-    public string racketTag = "Racket";
-    public float vanishDelay = 40f;
-    public float vanishScaleTime = 0.5f;
-    public bool useGravity = true;
-    public float Maxspeed = 10;
-    public float fuerzaRebote = 20;
 
-    private Rigidbody rb;
-    private bool wasHit = false;
 
-    void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    public class BallController : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = useGravity;
+        [Header("Configuración de Rebote")]
+        [Range(0f, 1f)] public float reduccionFuerza = 1; // cuánto se reduce la velocidad al golpear
+        public float fuerzaExtraCaida = 2f;
 
-    }
+        [Header("Configuración General")]
+        public string racketTag = "Racket";
+        public float vanishDelay = 40f;
+        public float vanishScaleTime = 0.5f;
+        public bool useGravity = true;
+        public float Maxspeed = 10;
+        public float fuerzaRebote = 20;
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (wasHit) return;
+        private Rigidbody rb;
+        private bool wasHit = false;
 
-        // 🔹 Rebote con el piso
-        if (collision.gameObject.CompareTag("floor"))
+        void Awake()
         {
-            if (rb.linearVelocity.y < 0)
+            rb = GetComponent<Rigidbody>();
+            rb.useGravity = useGravity;
+
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (wasHit) return;
+
+            // 🔹 Rebote con el piso
+            if (collision.gameObject.CompareTag("floor"))
             {
-                Vector3 vel = rb.linearVelocity;
-                vel.y = fuerzaRebote;
-                rb.linearVelocity = vel;
+                if (rb.linearVelocity.y < 0)
+                {
+                    Vector3 vel = rb.linearVelocity;
+                    vel.y = fuerzaRebote;
+                    rb.linearVelocity = vel;
+                }
+                Debug.Log("💥 La pelota rebotó en el piso.");
+                return;
             }
-            Debug.Log("💥 La pelota rebotó en el piso.");
-            return;
+
+            // 🔹 Golpe de raqueta: solo reducir velocidad
+            if (collision.gameObject.CompareTag(racketTag))
+            {
+                Debug.Log($"🏓 Velocidad orginal al {rb.linearVelocity}");
+                rb.linearVelocity *= reduccionFuerza; // reduce la velocidad actual
+
+                rb.AddForce(Vector3.down * fuerzaExtraCaida, ForceMode.VelocityChange);
+                Debug.Log($"🏓 Velocidad reducida al {rb.linearVelocity}% tras golpe de raqueta.");
+
+
+                wasHit = true;
+                StartCoroutine(VanishAfterDelay(vanishDelay));
+            }
         }
 
-        // 🔹 Golpe de raqueta: solo reducir velocidad
-        if (collision.gameObject.CompareTag(racketTag))
+        IEnumerator VanishAfterDelay(float delay)
         {
-            Debug.Log($"🏓 Velocidad orginal al {rb.linearVelocity }");
-            rb.linearVelocity *= reduccionFuerza; // reduce la velocidad actual
-            
-            rb.AddForce(Vector3.down * fuerzaExtraCaida, ForceMode.VelocityChange);
-            Debug.Log($"🏓 Velocidad reducida al {rb.linearVelocity }% tras golpe de raqueta.");
-           
-
-            wasHit = true;
-            StartCoroutine(VanishAfterDelay(vanishDelay));
+            yield return new WaitForSeconds(delay);
+            Vector3 startScale = transform.localScale;
+            float t = 0f;
+            while (t < vanishScaleTime)
+            {
+                t += Time.deltaTime;
+                float frac = Mathf.Clamp01(t / vanishScaleTime);
+                transform.localScale = Vector3.Lerp(startScale, Vector3.zero, frac);
+                yield return null;
+            }
+            Debug.Log("🕳️ La pelota fue destruida después del retardo.");
+            Destroy(gameObject);
         }
-    }
 
-    IEnumerator VanishAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Vector3 startScale = transform.localScale;
-        float t = 0f;
-        while (t < vanishScaleTime)
+        private void FixedUpdate()
         {
-            t += Time.deltaTime;
-            float frac = Mathf.Clamp01(t / vanishScaleTime);
-            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, frac);
-            yield return null;
-        }
-        Debug.Log("🕳️ La pelota fue destruida después del retardo.");
-        Destroy(gameObject);
-    }
-
-    private void FixedUpdate()
-    {
-        if(rb.linearVelocity.magnitude> Maxspeed && wasHit)
-        {
-            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, Maxspeed);
+            if (rb.linearVelocity.magnitude > Maxspeed && wasHit)
+            {
+                rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, Maxspeed);
+            }
         }
     }
 }
