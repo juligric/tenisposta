@@ -38,7 +38,15 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateDebug(string msg)
     {
-        txtDebug.text = msg;
+        if (txtDebug)
+        {
+            txtDebug.text = msg;
+        }
+        else
+        {
+            Debug.Log(msg);
+        }
+        
     }
 
 }
