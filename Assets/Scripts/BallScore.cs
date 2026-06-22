@@ -24,6 +24,7 @@ public class BallScore : MonoBehaviour
             if (scriptZona)
             {
                 GameManager.Instance.UpdateScore();
+                ZonasManager.Instance.ActivarZona(scriptZona.zonaID);
             }
         }        
     }

@@ -75,9 +75,6 @@ public class RacketController : MonoBehaviour
                 // Evaluamos el ángulo respecto al "Frente Real" de la cancha (Vector3.forward)
                 float angle = Vector3.Angle(Vector3.forward, movementDirection);
 
-                Transform chosenTarget = null;
-
-
 
                 // Calculamos la posición exacta en el piso hacia donde apunta el swing de la raqueta
                 float alturaDelPiso = 0f; // Ajusta esto si tu piso de Unity no está en Y = 0

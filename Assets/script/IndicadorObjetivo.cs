@@ -2,6 +2,9 @@
 
 public class IndicadorObjetivo : MonoBehaviour
 {
+    [Header("ZonaID")]
+    public int zonaID = 0;
+
     [Header("Colores")]
     public Color colorNormal = Color.gray;
     public Color colorIluminado = Color.green;

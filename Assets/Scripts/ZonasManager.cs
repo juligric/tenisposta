@@ -31,7 +31,7 @@ public class ZonasManager : MonoBehaviour
         
     }
 
-    public void ActivarZona()
+    public void ActivarZona(int zona)
     {
         GameManager.Instance.UpdateDebug("Activando zona " + zona);
         if (zona == 0)

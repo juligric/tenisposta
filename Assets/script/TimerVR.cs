@@ -19,7 +19,7 @@ public class TimerVR : MonoBehaviour
     private void Start()
     {
         tiempoRestante = tiempoTotal;
-        scoreManager = FindObjectOfType<ScoreManager>();
+        scoreManager = Object.FindFirstObjectByType<ScoreManager>();
     }
 
     private void Update()
