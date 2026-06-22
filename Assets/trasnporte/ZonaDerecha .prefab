@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1052165165361503951}
   - component: {fileID: 4058959049262216868}
-  - component: {fileID: 6859073553108382145}
+  - component: {fileID: 1607274707551095653}
   m_Layer: 0
   m_Name: 'ZonaDerecha '
-  m_TagString: Ground
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13, y: -0.4182097, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8565905268464402769}
@@ -48,10 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorNormal: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   colorIluminado: {r: 0, g: 1, b: 0, a: 1}
-  escalaExtra: 1.3
-  velocidadEscala: 5
   particulas: {fileID: 0}
---- !u!65 &6859073553108382145
+--- !u!65 &1607274707551095653
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,8 +68,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11, y: 2, z: 9}
-  m_Center: {x: -6, y: 4.5, z: -6}
+  m_Size: {x: 14.347385, y: 0.16475603, z: 8.014521}
+  m_Center: {x: -4.955236, y: 3.566487, z: -5.5072565}
 --- !u!1 &2850143017062742842
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,10 +81,9 @@ GameObject:
   - component: {fileID: 8565905268464402769}
   - component: {fileID: 7520961435528427721}
   - component: {fileID: 1813178112629314782}
-  - component: {fileID: 1411057967629067317}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,8 +97,8 @@ Transform:
   m_GameObject: {fileID: 2850143017062742842}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.6469283, y: 3.9682097, z: -5.879761}
-  m_LocalScale: {x: 1.1226197, y: 1, z: 0.8269533}
+  m_LocalPosition: {x: -5.3841, y: 3.66, z: -5.5505}
+  m_LocalScale: {x: 1.4617683, y: 1, z: 0.79486704}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052165165361503951}
@@ -134,6 +131,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -155,29 +154,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1411057967629067317
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2850143017062742842}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}

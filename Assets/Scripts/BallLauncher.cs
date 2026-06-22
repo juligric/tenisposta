@@ -49,5 +49,7 @@ public class BallLauncher : MonoBehaviour
 
         // Example enemy serve: send the ball from its current position to the player's court point in 1.5 seconds
         ballController.LaunchTowards(puntoPiqueCanchaJugador.position, duration, BallController.BallState.EnemyServe);
+        GameManager.Instance.UpdateDebug("Bola lanzada");
+        ZonasManager.Instance.ActivarZona();
     }
 }

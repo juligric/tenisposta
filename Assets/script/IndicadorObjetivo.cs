@@ -21,6 +21,7 @@ public class IndicadorObjetivo : MonoBehaviour
 
     public void Iluminar(float tiempo)
     {
+        Debug.Log("Iluminando " + gameObject.name);
         matInstancia.color = colorIluminado;
         matInstancia.SetColor("_EmissionColor", colorIluminado);
 

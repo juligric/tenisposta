@@ -32,6 +32,8 @@ public class BallInstantiator : MonoBehaviour
         {
             ballController.LaunchTowards(bouncePointTR.position, serviceForce, BallController.BallState.EnemyServe);
             Destroy(ballController.gameObject, 8);
+            GameManager.Instance.UpdateDebug("Bola lanzada");
+            ZonasManager.Instance.ActivarZona();
         }
         else
         {

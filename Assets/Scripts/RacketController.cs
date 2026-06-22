@@ -8,6 +8,9 @@ public class RacketController : MonoBehaviour
     [SerializeField] private float defaultReturnDuration = 1.2f; // Cuánto tarda la pelota en llegar al rival
     [SerializeField] private float maxValidAngle = 65f; // Ángulo máximo permitido respecto al frente (para tirar fuera)
     [SerializeField] private float multiplicadorTiro = 3f;
+    [SerializeField] private float canchaSize = 60f;
+
+    public bool deteccionAsistida;
 
     private List<Transform> targetZones = new List<Transform>();
     private Vector3 lastPosition;
@@ -25,6 +28,32 @@ public class RacketController : MonoBehaviour
     {
         // Calcular la velocidad de la raqueta frame a frame basada en la posición del control VR
         racketVelocity = (transform.position - lastPosition) / Time.deltaTime;
+
+
+        // --- NUEVO: DETECCIÓN PREVENTIVA PARA SWINGS ULTRA RÁPIDOS ---
+       
+        if (deteccionAsistida)
+        {
+            float distanceThisFrame = racketVelocity.magnitude * Time.deltaTime;
+
+            if (distanceThisFrame > 0.01f) // Solo si la raqueta se está moviendo
+            {
+                // Lanzamos un rayo invisible desde la posición anterior a la actual
+                RaycastHit hit;
+                Vector3 directionOfMotion = racketVelocity.normalized;
+
+                // Buscamos si en la trayectoria del movimiento de la raqueta nos cruzamos con la pelota
+                if (Physics.Raycast(lastPosition, directionOfMotion, out hit, distanceThisFrame))
+                {
+                    if (hit.collider.CompareTag("Ball"))
+                    {
+                        // Forzamos manualmente el impacto simulando el OnTriggerEnter
+                        OnTriggerEnter(hit.collider);
+                    }
+                }
+            }
+        }
+        // -------------------------------------------------------------
         lastPosition = transform.position;
     }
 
@@ -34,7 +63,7 @@ public class RacketController : MonoBehaviour
         {
             BallController ball = other.GetComponent<BallController>();
             Debug.Log("Ball hit NO TAG");
-            if (ball != null && ball.currentState == BallController.BallState.Idle)
+            if (ball != null && (ball.currentState == BallController.BallState.Idle || ball.currentState ==  BallController.BallState.EnemyServe))
             {
                 Debug.Log("Ball hit");
                 // 1. OBTENER LA DIRECCIÓN DEL MOVIMIENTO (Eje horizontal XZ)
@@ -52,7 +81,7 @@ public class RacketController : MonoBehaviour
 
                 // Calculamos la posición exacta en el piso hacia donde apunta el swing de la raqueta
                 float alturaDelPiso = 0f; // Ajusta esto si tu piso de Unity no está en Y = 0
-                Vector3 exactLandingPosition = CalculateFloorLandingPosition(transform.position, movementDirection, alturaDelPiso);
+                Vector3 exactLandingPosition = CalculateFloorLandingPosition(transform.position, movementDirection, alturaDelPiso,canchaSize);
 
                 // (Opcional) Podemos actualizar el debugVolume para que se mueva físicamente al lugar donde va a caer la pelota
                 if (debugVolume != null)
