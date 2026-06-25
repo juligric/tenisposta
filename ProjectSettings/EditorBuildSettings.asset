@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/viejas/Juego.unity
     guid: 3e42887c861d4df47b7a13f76d184c0e
   - enabled: 1
-    path: Assets/Scenes/NUEVO.unity
+    path: Assets/Scenes/nuevo.unity
     guid: 49a64e11823723845a54e85ff46a8f8f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

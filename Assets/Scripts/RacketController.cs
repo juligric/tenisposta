@@ -9,6 +9,7 @@ public class RacketController : MonoBehaviour
     [SerializeField] private float maxValidAngle = 65f; // Ángulo máximo permitido respecto al frente (para tirar fuera)
     [SerializeField] private float multiplicadorTiro = 3f;
     [SerializeField] private float canchaSize = 60f;
+    [SerializeField] private AudioSource audioRaqueta;
 
     public bool deteccionAsistida;
 
@@ -22,6 +23,7 @@ public class RacketController : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
+        audioRaqueta = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -123,6 +125,8 @@ public class RacketController : MonoBehaviour
     private void PlayHitEffects(Vector3 position)
     {
         // Efectos de sonido o partículas al impactar
+        audioRaqueta.Play();
+
     }
     /// <summary>
     /// Calcula el punto exacto de impacto en el suelo basándose en la dirección del golpe.
